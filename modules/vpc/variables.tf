@@ -1,9 +1,9 @@
-variable "VPCCidr" {
+variable "vpcCidr" {
   description = "Subnet for Public VPC in CIDR notation"
   type = string
 }
 
-variable "SubnetCidr" {
+variable "subnetCidr" {
   description = "Subnet for Public VPC in CIDR notation"
 }
 
