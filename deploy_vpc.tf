@@ -27,4 +27,8 @@ resource "aws_route_table_association" "route-associations" {
   route_table_id = aws_route_table.default-routes.id
 }
 
+module "public-vpc" {
+  source = ""
+}
+
 
