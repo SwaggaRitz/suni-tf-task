@@ -4,6 +4,11 @@ variable "cidrBlocks" {
   default     = []
 }
 
+variable "environment" {
+  description = "Environment Name"
+  type        = string
+}
+
 variable "fromPort" {
   description = "Port Number from source"
   type        = number
