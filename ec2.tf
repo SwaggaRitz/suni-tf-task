@@ -6,6 +6,6 @@ module "web_instance" {
     instanceName    = var.instanceName
     instanceType    = var.instanceType
     publicInstance  = var.publicInstance
-    securityGroups  = module.sg1.sgId
+    securityGroups  = [module.sg1.sgId]
     subnetID        = module.public-vpc.subnetID
 }
