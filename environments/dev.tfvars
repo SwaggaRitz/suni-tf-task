@@ -6,4 +6,4 @@ instanceName    = "web"
 instanceType    = "t2.micro"
 publicInstance  = true
 vpcCidr         = "10.0.0.0/24"
-subnetCidr       = "10.0.0.0/28"
+subnetCidr      = "10.0.0.0/28"
