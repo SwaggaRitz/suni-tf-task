@@ -1,0 +1,29 @@
+Terraform Improvements
+
+* Terraform state is currently stored locally, meaning code cannot be run elsewhere. The state need to by put into an S3 bucket ideally and the backend updated. I tend to have a bucket for states with individual keys for each environment. e.g S3://terraform-state-REGION-ACCOUNT/ENV.tfstate
+* The modules I have created need further improvement. I tend to use official modules unless they are not available. I did them manually here to show competence. The official module give greater flexibility, for example flags to create private-vpcs and creating multiple security groups from one module etc
+* If custom modules are required they should go into their own repo where they can be versioned.
+* Although the test code is only small, I don't consider it good practice to do mono-repo Terraform. Is better to split your infrastructure up into tiers this way if a state file corrupts blast radius is minimised. Also, you don't have to keep running applies on infrastructure that is static.
+* The above would also allow you to version areas of your infrastructure enabling you to use a proper development cycle against it.
+
+
+CI/CD Improvements
+
+* Introducing a CI/CD pipeline is essential to repeatable tested deployments. I would recommend using GitHub actions to do tests on any PR, for example Terraform Validate, updating TFDOCs. Separate Actions for an apply, this would run a plan and provide a pretty printed output to the plan before approval of the apply.
+* These pipelines would run on different code states, for example on a PUSH we could just auto run validate. On a PR validate, DOCS and a plan. On merge the apply would run.
+* We would lock the originator from been able to approve their own PRS and can even ask for more than one approval.
+* From having tiers of infrastructure mentioned above, you could have pipelines trigger lower tiers.  For example if you made a change to the networking tier (VPCs etc) this would trigger an apply for all tiers using this on
+* Using CICD would allow you to store Key/Values outside the project
+
+Security Improvements
+
+* Currently all the web instances have public IP addresses along with security groups that allow all traffic to them. This is really bad practice and should be solved by placing a Application Load Balancer (ALB) in front that has a public IP with a Web Application Firewall (WAF) controlling access.
+* The instances themselves should only have private IPs and potentially another private subnet created that they live in. Security Groups that only allow the ALB to talk to them.
+
+Scalabilty/Cost Improvements
+
+* Using EC2 to run a simple web services that needs to scale isn't the best method. I would recommend containerising the application and deploying to EKS backed by Karpenter. This would allow the cluster to scale for demand and pear back during quite periods, it is also much quicker the using auto scaling groups for EC2
+* EKS would allow you to leverage other technologies like ArgoCD allowing for the deployment of code be streamlined without affecting the infrastructure, this would also empower developments teams to handle their own deployments.
+* You can also deploy tools like Renovate to manage any dependencies. The tool automatically finds newer versions and raises its own PRs.
+* At current only been able to deploy to euwest-2 is possible. I recommend using provider aliases so you can deploy to different regions if ever required
+* The aws instances don't include the instance_market_type, this would allow you to have control over cost. For example you may only want the dev environment to run on spot instances, if you don't care about it's uptime.
