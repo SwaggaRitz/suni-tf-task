@@ -5,13 +5,13 @@ variable "ami" {
 
 variable "environment" {
   description = "Environment Name"
-  type = string
+  type        = string
 }
 
 variable "instanceCount" {
   description = "Number of instances to deploy"
   type        = number
-  default      = 1
+  default     = 1
 }
 
 variable "instanceName" {

@@ -1,9 +1,9 @@
-ami = "ami-0500f74cc2b89fb6b"
+ami             = "ami-0500f74cc2b89fb6b"
 availabiltyZone = "eu-west-2"
-environment = "prod"
-instanceCount = 3
-instanceName = "web"
-instanceType = "t3.large"
-publicInstance = true
-vpcCidr = "10.0.0.0/24"
-subnetCidr = "10.0.0.0/28"
+environment     = "prod"
+instanceCount   = 3
+instanceName    = "web"
+instanceType    = "t3.large"
+publicInstance  = true
+vpcCidr         = "10.0.0.0/24"
+subnetCidr      = "10.0.0.0/28"

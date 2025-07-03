@@ -1,12 +1,12 @@
 resource "aws_vpc" "vpc" {
-  cidr_block = var.vpcCidr
-  enable_dns_hostnames = true
-  enable_dns_support = true
+  cidr_block            = var.vpcCidr
+  enable_dns_hostnames  = true
+  enable_dns_support    = true
 }
 
 resource "aws_subnet" "subnet" {
-  vpc_id     = aws_vpc.vpc.id
-  cidr_block = var.subnetCidr
+  vpc_id            = aws_vpc.vpc.id
+  cidr_block        = var.subnetCidr
   availability_zone = var.availabiltyZone
 }
 

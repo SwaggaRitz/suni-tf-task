@@ -1,7 +1,7 @@
 variable "cidrBlocks" {
   description = "List of CIDR ranges to allow"
   type        = list(string)
-  default      = []
+  default     = []
 }
 
 variable "fromPort" {
