@@ -29,3 +29,5 @@ For prod
 ```shell
  terraform apply -var-file="environments/prod.tfvars"
 ```
+
+Please see TFDOCS.md for Terraform and Module information
